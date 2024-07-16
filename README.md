@@ -1,5 +1,4 @@
 # Java-SDET-P1-InventoryManagementApp
- Inventory Management solution that will enable an administrator at a given company to manage the entities at any of its warehouses
 
 ## Project 1 (Due 08/02/2024)
 ### Inventory Management
