@@ -1,5 +1,6 @@
-# Project 1 (Due 08/02/2024)
-## Inventory Management
+# Inventory Management
+
+## Project 1 (Due 08/02/2024)
 ### Java-SDET Practice
 
 #### Objective:
