@@ -16,9 +16,9 @@ addition of items that would cause the warehouse to exceed its capacity.
 
 #### Functional Requirements:
  * Must be a full-stack solution consisting of:
-  1. Java with Spring Boot
-  2. PostgreSQL
-  3. React
+   1. Java with Spring Boot
+   2. PostgreSQL
+   3. React
  * Code should be available to a public GitHub repository
  * Possesses all required CRUD functionality
  * Handles edge cases effectively
