@@ -1,7 +1,6 @@
-# Java-SDET-P1-InventoryManagementApp
-
-## Project 1 (Due 08/02/2024)
-### Inventory Management
+# Project 1 (Due 08/02/2024)
+## Inventory Management
+### Java-SDET Practice
 
 #### Objective:
 
