@@ -1,5 +1,28 @@
 # Planning Notes
-## Ideas, Questions, and Brainstorming
+## TODOs
+
+### Postgress
+    - DONE - Insert Item Table and Total Inventory Table
+    - DONE - Insert Dummy Information into Item/Inventory Tables
+    - TODO - Create Table Structure for Warehouse Table
+    - TODO - Insert Dummy Information for Warehouse
+
+### SpringBootApplication
+    - DONE - Create Initial SpringBoot Application
+    - TODO - Create Models for ProductInfo, WarehouseInfo, Inventory
+    - TODO - Create Servers, Repositories, and Controllers
+    - TODO - Implement CRUD operations for request mapping
+    - TODO - Test http requests and response body information
+
+### Front End
+    - TODO - Start Initial Design on Paper
+    - TODO - Create REACT server(?) for page rendering
+    - TODO - Mock up initial Design with Static Dummy Information
+    - TODO - Design State Changes for changes in product information
+    - TODO - Connect Front End to Back End?
+
+
+## Ideas
 
 ### Table Ideas
     Warehouse_Identifier: (Primary: warehouse_id)
@@ -12,13 +35,13 @@
         1. product_id
         2. product_name
         3. product_size - how much space it takes up in the factory
-        4. picture_link - link to a picture to display of product
+        4. picture_link - *optional*
 
     Inventory_Table: (Primary: warehouse_id + product_id)
         1. warehouse_id (foreign_key --> Warehouse Identifier)   
         2. product_id   (foreign_key --> Product Identifier)
         3. quantity
-        4. max_capacity - *optional* capacity for that "warehouse/product" combo
+        4. max_capacity - *optional* item capacity for that "warehouse"
         5. price
 
 #### Can Be Implemented Later after Initial Run
@@ -36,7 +59,3 @@
         6. price_sold
         *NOTE* (warehouse_id + product_id = foreign key --> product table)
 
-
-#### Questions
-
-#### Things to Figure out
