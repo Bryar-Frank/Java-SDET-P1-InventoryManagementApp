@@ -4,8 +4,8 @@
 ### Postgress
     - DONE - Insert Item Table and Total Inventory Table
     - DONE - Insert Dummy Information into Item/Inventory Tables
-    - TODO - Create Table Structure for Warehouse Table
-    - TODO - Insert Dummy Information for Warehouse
+    - DONE - Create Table Structure for Warehouse Table
+    - DONE - Insert Dummy Information for Warehouse
 
 ### SpringBootApplication
     - DONE - Create Initial SpringBoot Application
