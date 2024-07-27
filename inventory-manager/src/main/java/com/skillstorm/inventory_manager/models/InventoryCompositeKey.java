@@ -3,38 +3,28 @@ package com.skillstorm.inventory_manager.models;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-
-@Embeddable
 public class InventoryCompositeKey implements Serializable{
-    @Column(name = "product_id", insertable = false, updatable = false)
-    private int productId;
+    
+    private Integer productId;
 
-    @Column(name = "warehouse_id", insertable = false, updatable = false)
-    private int warehouseId;
+    private Integer warehouseId;
 
     public InventoryCompositeKey() {
     }
 
-    public InventoryCompositeKey(int productId, int warehouseId) {
-        this.productId = productId;
-        this.warehouseId = warehouseId;
-    }
-
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
-    public int getWarehouseId() {
+    public Integer getWarehouseId() {
         return warehouseId;
     }
 
-    public void setWarehouseId(int warehouseId) {
+    public void setWarehouseId(Integer warehouseId) {
         this.warehouseId = warehouseId;
     }
 
@@ -42,8 +32,8 @@ public class InventoryCompositeKey implements Serializable{
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + productId;
-        result = prime * result + warehouseId;
+        result = prime * result + ((productId == null) ? 0 : productId.hashCode());
+        result = prime * result + ((warehouseId == null) ? 0 : warehouseId.hashCode());
         return result;
     }
 
@@ -56,17 +46,17 @@ public class InventoryCompositeKey implements Serializable{
         if (getClass() != obj.getClass())
             return false;
         InventoryCompositeKey other = (InventoryCompositeKey) obj;
-        if (productId != other.productId)
+        if (productId == null) {
+            if (other.productId != null)
+                return false;
+        } else if (!productId.equals(other.productId))
             return false;
-        if (warehouseId != other.warehouseId)
+        if (warehouseId == null) {
+            if (other.warehouseId != null)
+                return false;
+        } else if (!warehouseId.equals(other.warehouseId))
             return false;
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "InventoryCompositeKey [productId=" + productId + ", warehouseId=" + warehouseId + "]";
-    }
-
 
 }

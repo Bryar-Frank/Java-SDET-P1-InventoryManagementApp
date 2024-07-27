@@ -1,6 +1,5 @@
 package com.skillstorm.inventory_manager.models;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,14 +33,13 @@ public class Product {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
-    private int productId;
+    private Integer productId;
     
     private String name;    //name of product
-    private int size;       //how much space it takes up in warehouse
+    private Integer size;       //how much space it takes up in warehouse
     
     
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
     public void setProductId(int productId) {
@@ -53,18 +51,13 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
-    public int getSize() {
+    public Integer getSize() {
         return size;
     }
     public void setSize(int size) {
         this.size = size;
     }
-    
 
-    @Override
-    public String toString() {
-        return "Product [id=" + productId + ", name=" + name + ", size=" + size + "]";
-    }
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -94,7 +87,10 @@ public class Product {
             return false;
         return true;
     }
-    
 
+    @Override
+    public String toString() {
+        return "Product [id=" + productId + ", name=" + name + ", size=" + size + "]";
+    }
     
 }

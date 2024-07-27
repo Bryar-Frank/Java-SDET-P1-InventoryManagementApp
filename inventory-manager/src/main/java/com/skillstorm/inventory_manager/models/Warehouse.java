@@ -1,6 +1,5 @@
 package com.skillstorm.inventory_manager.models;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,8 +34,7 @@ public class Warehouse {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "warehouse_id")
-    private int warehouseId;
+    private Integer warehouseId;
 
 
     private String name;
@@ -46,7 +44,7 @@ public class Warehouse {
     private String capacity;
     
     
-    public int getWarehouseId() {
+    public Integer getWarehouseId() {
         return warehouseId;
     }
     public void setWarehouseId(int warehouseId) {
