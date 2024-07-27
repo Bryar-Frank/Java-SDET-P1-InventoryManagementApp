@@ -53,7 +53,7 @@ public class Inventory {
     
     public Inventory() {
     }
-    public Inventory(int productId, int warehouseId, int quantity, double price, int capacity) {
+    public Inventory(Integer productId, Integer warehouseId, Integer quantity, Double price, Integer capacity) {
         this.productId = productId;
         this.warehouseId = warehouseId;
         this.quantity = quantity;
@@ -64,19 +64,19 @@ public class Inventory {
     public Integer getProductId() {
         return productId;
     }
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
     public Integer getWarehouseId() {
         return warehouseId;
     }
-    public void setWarehouseId(int warehouseId) {
+    public void setWarehouseId(Integer warehouseId) {
         this.warehouseId = warehouseId;
     }
     public Integer getQuantity() {
         return quantity;
     }
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
     public Double getPrice() {
@@ -88,7 +88,7 @@ public class Inventory {
     public Integer getMaxCapacity() {
         return capacity;
     }
-    public void setMaxCapacity(int capacity) {
+    public void setMaxCapacity(Integer capacity) {
         this.capacity = capacity;
     }
     @Override

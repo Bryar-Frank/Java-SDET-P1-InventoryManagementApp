@@ -44,10 +44,21 @@ public class Warehouse {
     private String capacity;
     
     
+    public Warehouse() {
+    }
+    
+    public Warehouse(Integer warehouseId, String name, String state, String city, String address, String capacity) {
+        this.warehouseId = warehouseId;
+        this.name = name;
+        this.state = state;
+        this.city = city;
+        this.address = address;
+        this.capacity = capacity;
+    }
     public Integer getWarehouseId() {
         return warehouseId;
     }
-    public void setWarehouseId(int warehouseId) {
+    public void setWarehouseId(Integer warehouseId) {
         this.warehouseId = warehouseId;
     }
     public String getName() {

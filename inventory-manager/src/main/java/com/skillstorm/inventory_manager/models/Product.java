@@ -42,7 +42,14 @@ public class Product {
     public Integer getProductId() {
         return productId;
     }
-    public void setProductId(int productId) {
+    
+    public Product(Integer productId, String name, Integer size) {
+        this.productId = productId;
+        this.name = name;
+        this.size = size;
+    }
+
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
     public String getName() {
@@ -54,7 +61,7 @@ public class Product {
     public Integer getSize() {
         return size;
     }
-    public void setSize(int size) {
+    public void setSize(Integer size) {
         this.size = size;
     }
 
