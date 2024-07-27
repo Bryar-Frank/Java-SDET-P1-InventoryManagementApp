@@ -34,44 +34,34 @@ import jakarta.persistence.Table;
 public class Inventory {
 
     @Id @Column(name = "p_id")
-    private Integer productId;
+    private Product product;
 
     @Id @Column(name = "w_id")
-    private Integer warehouseId;
-
-    // @OneToOne
-    // @JoinColumn(name = "product_id", referencedColumnName = "product_id", insertable = false, updatable = false)
-    // private Product product;
-
-    // @OneToOne
-    // @JoinColumn(name = "warehouse_id", referencedColumnName = "warehouse_id", insertable = false, updatable = false)
-    // private Warehouse warehouse;
+    private Warehouse warehouse;
 
     private Integer quantity;
     private Double price;
     private Integer capacity;
-    
     public Inventory() {
     }
-    public Inventory(Integer productId, Integer warehouseId, Integer quantity, Double price, Integer capacity) {
-        this.productId = productId;
-        this.warehouseId = warehouseId;
+    public Inventory(Product product, Warehouse warehouse, Integer quantity, Double price, Integer capacity) {
+        this.product = product;
+        this.warehouse = warehouse;
         this.quantity = quantity;
         this.price = price;
         this.capacity = capacity;
     }
-   
-    public Integer getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
-    public Integer getWarehouseId() {
-        return warehouseId;
+    public Warehouse getWarehouse() {
+        return warehouse;
     }
-    public void setWarehouseId(Integer warehouseId) {
-        this.warehouseId = warehouseId;
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
     public Integer getQuantity() {
         return quantity;
@@ -82,26 +72,24 @@ public class Inventory {
     public Double getPrice() {
         return price;
     }
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
-    public Integer getMaxCapacity() {
+    public Integer getCapacity() {
         return capacity;
     }
-    public void setMaxCapacity(Integer capacity) {
+    public void setCapacity(Integer capacity) {
         this.capacity = capacity;
     }
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + productId;
-        result = prime * result + warehouseId;
-        result = prime * result + quantity;
-        long temp;
-        temp = Double.doubleToLongBits(price);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result + capacity;
+        result = prime * result + ((product == null) ? 0 : product.hashCode());
+        result = prime * result + ((warehouse == null) ? 0 : warehouse.hashCode());
+        result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
+        result = prime * result + ((price == null) ? 0 : price.hashCode());
+        result = prime * result + ((capacity == null) ? 0 : capacity.hashCode());
         return result;
     }
     @Override
@@ -113,25 +101,33 @@ public class Inventory {
         if (getClass() != obj.getClass())
             return false;
         Inventory other = (Inventory) obj;
-        if (productId != other.productId)
+        if (product == null) {
+            if (other.product != null)
+                return false;
+        } else if (!product.equals(other.product))
             return false;
-        if (warehouseId != other.warehouseId)
+        if (warehouse == null) {
+            if (other.warehouse != null)
+                return false;
+        } else if (!warehouse.equals(other.warehouse))
             return false;
-        if (quantity != other.quantity)
+        if (quantity == null) {
+            if (other.quantity != null)
+                return false;
+        } else if (!quantity.equals(other.quantity))
             return false;
-        if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
+        if (price == null) {
+            if (other.price != null)
+                return false;
+        } else if (!price.equals(other.price))
             return false;
-        if (capacity != other.capacity)
+        if (capacity == null) {
+            if (other.capacity != null)
+                return false;
+        } else if (!capacity.equals(other.capacity))
             return false;
         return true;
     }
-    @Override
-    public String toString() {
-        return "Inventory [productId=" + productId + ", warehouseId=" + warehouseId + ", quantity=" + quantity
-                + ", price=" + price + ", maxCapacity=" + capacity + "]";
-    }
     
     
-
-
 }

@@ -9,17 +9,18 @@
 
 ### SpringBootApplication
     - DONE - Create Initial SpringBoot Application
-    - TODO - Create Models for ProductInfo, WarehouseInfo, Inventory
-    - TODO - Create Servers, Repositories, and Controllers
+    - DONE - Create Models for ProductInfo, WarehouseInfo, Inventory
+    - DONE - Create Servers, Repositories, and Controllers for Inventory
     - TODO - Implement CRUD operations for request mapping
-    - TODO - Test http requests and response body information
-
+    - DONE - Test http requests and response body information for column joining
+    - TODO - Test CRUD operations for all CRUD operation
+    
 ### Front End
     - TODO - Start Initial Design on Paper
     - TODO - Create REACT server(?) for page rendering
     - TODO - Mock up initial Design with Static Dummy Information
+    - TODO - Get successful fetchs for inventory information
     - TODO - Design State Changes for changes in product information
-    - TODO - Connect Front End to Back End?
 
 
 ## Ideas

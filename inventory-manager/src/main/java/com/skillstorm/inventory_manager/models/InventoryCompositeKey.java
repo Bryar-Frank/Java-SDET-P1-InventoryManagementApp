@@ -3,60 +3,19 @@ package com.skillstorm.inventory_manager.models;
 
 import java.io.Serializable;
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+
 public class InventoryCompositeKey implements Serializable{
     
-    private Integer productId;
+    @ManyToOne
+    @JoinColumn(name = "p_id", referencedColumnName = "id")
+    private Product product;
 
-    private Integer warehouseId;
+    @ManyToOne
+    @JoinColumn(name = "w_id", referencedColumnName = "id")
+    private Warehouse warehouse;
 
-    public InventoryCompositeKey() {
-    }
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
-
-    public Integer getWarehouseId() {
-        return warehouseId;
-    }
-
-    public void setWarehouseId(Integer warehouseId) {
-        this.warehouseId = warehouseId;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((productId == null) ? 0 : productId.hashCode());
-        result = prime * result + ((warehouseId == null) ? 0 : warehouseId.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        InventoryCompositeKey other = (InventoryCompositeKey) obj;
-        if (productId == null) {
-            if (other.productId != null)
-                return false;
-        } else if (!productId.equals(other.productId))
-            return false;
-        if (warehouseId == null) {
-            if (other.warehouseId != null)
-                return false;
-        } else if (!warehouseId.equals(other.warehouseId))
-            return false;
-        return true;
-    }
 
 }
