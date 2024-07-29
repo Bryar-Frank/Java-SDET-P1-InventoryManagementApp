@@ -1,10 +1,10 @@
 package com.skillstorm.inventory_manager.models;
 
-import jakarta.persistence.Column;
+
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
+
 
 /**
  * INVENTORY (PRIMARY KEY = w_id + p_id)
@@ -30,38 +30,28 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "inventory")
-@IdClass(InventoryCompositeKey.class)
 public class Inventory {
 
-    @Id @Column(name = "p_id")
-    private Product product;
-
-    @Id @Column(name = "w_id")
-    private Warehouse warehouse;
+    @EmbeddedId
+    InventoryCompositeKey id;
 
     private Integer quantity;
     private Double price;
     private Integer capacity;
+    
     public Inventory() {
     }
-    public Inventory(Product product, Warehouse warehouse, Integer quantity, Double price, Integer capacity) {
-        this.product = product;
-        this.warehouse = warehouse;
+    public Inventory(InventoryCompositeKey id, Integer quantity, Double price, Integer capacity) {
+        this.id = id;
         this.quantity = quantity;
         this.price = price;
         this.capacity = capacity;
     }
-    public Product getProduct() {
-        return product;
+    public InventoryCompositeKey getId() {
+        return id;
     }
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-    public Warehouse getWarehouse() {
-        return warehouse;
-    }
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
+    public void setId(InventoryCompositeKey id) {
+        this.id = id;
     }
     public Integer getQuantity() {
         return quantity;
@@ -85,8 +75,7 @@ public class Inventory {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((product == null) ? 0 : product.hashCode());
-        result = prime * result + ((warehouse == null) ? 0 : warehouse.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
         result = prime * result + ((price == null) ? 0 : price.hashCode());
         result = prime * result + ((capacity == null) ? 0 : capacity.hashCode());
@@ -101,15 +90,10 @@ public class Inventory {
         if (getClass() != obj.getClass())
             return false;
         Inventory other = (Inventory) obj;
-        if (product == null) {
-            if (other.product != null)
+        if (id == null) {
+            if (other.id != null)
                 return false;
-        } else if (!product.equals(other.product))
-            return false;
-        if (warehouse == null) {
-            if (other.warehouse != null)
-                return false;
-        } else if (!warehouse.equals(other.warehouse))
+        } else if (!id.equals(other.id))
             return false;
         if (quantity == null) {
             if (other.quantity != null)
@@ -128,6 +112,12 @@ public class Inventory {
             return false;
         return true;
     }
+    @Override
+    public String toString() {
+        return "Inventory [id=" + id + ", quantity=" + quantity + ", price=" + price + ", capacity=" + capacity + "]";
+    }
+    
+    
     
     
 }
