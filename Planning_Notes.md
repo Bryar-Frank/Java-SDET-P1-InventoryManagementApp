@@ -11,9 +11,9 @@
     - DONE - Create Initial SpringBoot Application
     - DONE - Create Models for ProductInfo, WarehouseInfo, Inventory
     - DONE - Create Servers, Repositories, and Controllers for Inventory
-    - TODO - Implement CRUD operations for request mapping
+    - DONE - Implement CRUD operations for request mapping
     - DONE - Test http requests and response body information for column joining
-    - TODO - Test CRUD operations for all CRUD operation
+    - TODO - Test CRUD operations for GET, POST, PUT, DELETE
     
 ### Front End
     - TODO - Start Initial Design on Paper
