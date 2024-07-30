@@ -6,6 +6,8 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.skillstorm.inventory_manager.models.Inventory;
@@ -31,8 +33,31 @@ public class InventoryService {
         return repo.findAll();
     }
 
-    public Optional<Inventory> findById(InventoryCompositeKey id) {
-        return repo.findById(id);
+    public Inventory findById(InventoryCompositeKey id) {
+        Optional<Inventory> item = repo.findById(id);
+        if (item.isPresent()) {
+            /**
+             * It is possible for only the IDs of a product/warehouse to be sent in
+             * This will get the rest of the information for those requests
+             * Allowing the http response to send back all information if needed
+             */
+            // item is currently Optional<Inventory>
+            Inventory existingItem = item.get();
+            InventoryCompositeKey compositeId = existingItem.getId();
+            
+            // getting all the information about the products and warehouses from their repositories
+            Product product = productRepo.findById(compositeId.getProduct().getId()).get();
+            Warehouse warehouse = warehouseRepo.findById(compositeId.getWarehouse().getId()).get();
+            
+            // Update the existing item with all the new information
+            compositeId.setProduct(product);
+            compositeId.setWarehouse(warehouse);
+            existingItem.setId(compositeId);
+            
+            return existingItem;
+        }
+        else 
+            return null;
     }
 
     @Transactional // Rollback on RuntimeExceptions

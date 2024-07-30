@@ -13,7 +13,7 @@
     - DONE - Create Servers, Repositories, and Controllers for Inventory
     - DONE - Implement CRUD operations for request mapping
     - DONE - Test http requests and response body information for column joining
-    - TODO - Test CRUD operations for GET, POST, PUT, DELETE
+    - DONE - Test CRUD operations for GET, POST, PUT, DELETE
     
 ### Front End
     - TODO - Start Initial Design on Paper

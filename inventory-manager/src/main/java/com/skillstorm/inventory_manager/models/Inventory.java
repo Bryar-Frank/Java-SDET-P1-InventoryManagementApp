@@ -1,6 +1,9 @@
 package com.skillstorm.inventory_manager.models;
 
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -33,6 +36,7 @@ import jakarta.persistence.Table;
 public class Inventory {
 
     @EmbeddedId
+    @Cascade(CascadeType.ALL)
     InventoryCompositeKey id;
 
     private Integer quantity;

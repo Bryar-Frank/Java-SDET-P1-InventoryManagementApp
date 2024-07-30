@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 /**
  * INVENTORY (PRIMARY KEY = w_id + p_id)
@@ -37,9 +38,9 @@ public class Product {
     
     private String productName;    //name of product
     private Integer size;       //how much space it takes up in warehouse
+    
     public Product() {
     }
-    
     public Product(Integer id, String productName, Integer size) {
         this.id = id;
         this.productName = productName;

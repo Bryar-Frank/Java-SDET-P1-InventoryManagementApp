@@ -6,6 +6,9 @@ import java.io.Serializable;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -15,12 +18,12 @@ import jakarta.validation.constraints.NotNull;
 public class InventoryCompositeKey implements Serializable{
     
     @ManyToOne @NotNull
-    @Cascade({CascadeType.PERSIST, CascadeType.MERGE})
+    @Cascade(CascadeType.ALL)
     @JoinColumn(name = "p_id", referencedColumnName = "id")
     private Product product;
 
     @ManyToOne @NotNull
-    @Cascade({CascadeType.PERSIST, CascadeType.MERGE})
+    @Cascade(CascadeType.ALL)
     @JoinColumn(name = "w_id", referencedColumnName = "id")
     private Warehouse warehouse;
 

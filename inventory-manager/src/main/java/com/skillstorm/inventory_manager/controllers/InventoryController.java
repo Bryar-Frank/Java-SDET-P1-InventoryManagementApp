@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.inventory_manager.models.Inventory;
 import com.skillstorm.inventory_manager.models.InventoryCompositeKey;
+import com.skillstorm.inventory_manager.models.Warehouse;
 import com.skillstorm.inventory_manager.services.InventoryService;
 
 import jakarta.validation.Valid;
@@ -46,9 +47,11 @@ public class InventoryController {
     
     @GetMapping("/item")
     public ResponseEntity<Inventory> findById(@Valid @RequestBody InventoryCompositeKey id) {
-        Optional<Inventory> item = service.findById(id);
-        if (item.isPresent())
-            return ResponseEntity.ok(item.get());
+        Inventory item = service.findById(id);
+        
+        if (item != null) { 
+            return ResponseEntity.ok(item);
+        }
         else 
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
