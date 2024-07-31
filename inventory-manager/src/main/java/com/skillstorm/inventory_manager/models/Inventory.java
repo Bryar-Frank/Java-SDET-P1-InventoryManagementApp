@@ -41,15 +41,15 @@ public class Inventory {
 
     private Integer quantity;
     private Double price;
-    private Integer capacity;
+    private Integer itemCap;
     
     public Inventory() {
     }
-    public Inventory(InventoryCompositeKey id, Integer quantity, Double price, Integer capacity) {
+    public Inventory(InventoryCompositeKey id, Integer quantity, Double price, Integer itemCap) {
         this.id = id;
         this.quantity = quantity;
         this.price = price;
-        this.capacity = capacity;
+        this.itemCap = itemCap;
     }
     public InventoryCompositeKey getId() {
         return id;
@@ -69,11 +69,11 @@ public class Inventory {
     public void setPrice(Double price) {
         this.price = price;
     }
-    public Integer getCapacity() {
-        return capacity;
+    public Integer getItemCap() {
+        return itemCap;
     }
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
+    public void setItemCap(Integer itemCap) {
+        this.itemCap = itemCap;
     }
     @Override
     public int hashCode() {
@@ -82,7 +82,7 @@ public class Inventory {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
         result = prime * result + ((price == null) ? 0 : price.hashCode());
-        result = prime * result + ((capacity == null) ? 0 : capacity.hashCode());
+        result = prime * result + ((itemCap == null) ? 0 : itemCap.hashCode());
         return result;
     }
     @Override
@@ -109,16 +109,16 @@ public class Inventory {
                 return false;
         } else if (!price.equals(other.price))
             return false;
-        if (capacity == null) {
-            if (other.capacity != null)
+        if (itemCap == null) {
+            if (other.itemCap != null)
                 return false;
-        } else if (!capacity.equals(other.capacity))
+        } else if (!itemCap.equals(other.itemCap))
             return false;
         return true;
     }
     @Override
     public String toString() {
-        return "Inventory [id=" + id + ", quantity=" + quantity + ", price=" + price + ", capacity=" + capacity + "]";
+        return "Inventory [id=" + id + ", quantity=" + quantity + ", price=" + price + ", itemCap=" + itemCap + "]";
     }
     
     
