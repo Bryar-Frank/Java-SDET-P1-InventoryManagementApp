@@ -65,7 +65,7 @@ function getRows (data) {
 }
 
 function getCells(obj) {
-  console.log(Object.entries(obj));
+  //console.log(Object.entries(obj));
   return Object.entries(obj).map(entry => {
     if (entry[0] != 'id') {
       return <td key={entry[0]}>{entry[1]}</td>

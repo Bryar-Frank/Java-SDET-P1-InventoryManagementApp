@@ -46,11 +46,20 @@ addition of items that would cause the warehouse to exceed its capacity.
     - DONE - Test CRUD operations for GET, POST, PUT, DELETE
     
 ### Front End
-    - TODO - Start Initial Design on Paper
+    - DONE - Start Initial Design on Paper
     - DONE - Create REACT server(?) for page rendering
-    - TODO - Mock up initial Design with Static Dummy Information
-    - TODO - Get successful fetchs for inventory information
-    - TODO - Design State Changes for changes in product information
+    - DONE - Mock up initial Design with Static Dummy Information
+    - DONE - Get successful fetchs for inventory information
+
+    - TODO - Get successful POST, PUT, and DELETE fetchs done
+    - TODO - FIX ALL TODOS is React Structure
+        + Homepage - List Warehouse/Inventory Options (+ sign for new Warehouse)
+        + Warehouse Page - Warehouse Info with option to edit
+        + New Item Form
+        + New Warehouse Form
+        + New Product Form
+    - TODO - Make it look pretty!!
+
 
 
 ## Ideas

@@ -1,5 +1,5 @@
-import { AllInventoryPage } from './AllInventoryPage.jsx'
-
-export * from './WarehouseInfoPage.jsx'
-export * from './HomePage.jsx'
-export * from './AllInventoryPage.jsx'
+export * from './home/HomePage.jsx'
+export * from './warehouse/WarehouseInfoPage.jsx'
+export * from './warehouse/NewWarehousePage.jsx'
+export * from './inventory/AllInventoryPage.jsx'
+export * from './inventory/NewInventoryPage.jsx'
