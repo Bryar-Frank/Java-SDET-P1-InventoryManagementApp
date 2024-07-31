@@ -7,5 +7,4 @@ import com.skillstorm.inventory_manager.models.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-    
 }

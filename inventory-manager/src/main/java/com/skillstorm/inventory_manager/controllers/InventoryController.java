@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.inventory_manager.models.Inventory;
 import com.skillstorm.inventory_manager.models.InventoryCompositeKey;
+import com.skillstorm.inventory_manager.models.Product;
 import com.skillstorm.inventory_manager.models.Warehouse;
 import com.skillstorm.inventory_manager.services.InventoryService;
 
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -46,6 +49,14 @@ public class InventoryController {
     public List<Inventory> findAllInventory() {
         return service.findAllInventory();
     }
+    @GetMapping("/products")
+    public List<Product> findAllProducts() {
+        return service.findAllProducts();
+    }
+    @GetMapping("/warehouses")
+    public List<Warehouse> findAllWarehouses() {
+        return service.findAllWarehouses();
+    }
     
     @GetMapping("/item")
     public ResponseEntity<Inventory> findById(@Valid @RequestBody InventoryCompositeKey id) {
@@ -57,6 +68,7 @@ public class InventoryController {
         else 
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+    
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)

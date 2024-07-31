@@ -32,8 +32,15 @@ public class InventoryService {
     public List<Inventory> findAllInventory() {
         return repo.findAll();
     }
+    public List<Product> findAllProducts() {
+        return productRepo.findAll();
+    }
+    public List<Warehouse> findAllWarehouses() {
+        return warehouseRepo.findAll();
+    }
 
     public Inventory findById(InventoryCompositeKey id) {
+        
         Optional<Inventory> item = repo.findById(id);
         if (item.isPresent()) {
             /**
