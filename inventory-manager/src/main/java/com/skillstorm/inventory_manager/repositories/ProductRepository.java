@@ -7,4 +7,8 @@ import com.skillstorm.inventory_manager.models.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
+    
+    boolean existsByProductNameAndSize(String productName, Integer size);
+
+    Product findByProductNameAndSize(String productName, Integer size);
 }

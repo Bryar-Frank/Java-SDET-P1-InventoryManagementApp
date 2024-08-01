@@ -42,10 +42,10 @@ public class WarehouseController {
     }
 
     @PutMapping
-    public void update(@Valid @RequestBody Warehouse warehouse) {
+    public Warehouse update(@Valid @RequestBody Warehouse warehouse) {
         // update contents of item with specific id
         Integer id = warehouse.getId();
-        service.update(id, warehouse);
+        return service.update(id, warehouse);
     }
     
     @DeleteMapping("/{id}")

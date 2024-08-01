@@ -8,7 +8,6 @@ import com.skillstorm.inventory_manager.models.Warehouse;
 @Repository
 public interface WarehouseRepository extends JpaRepository<Warehouse, Integer> {
     
-    boolean existsByWarehouseName(String warehouseName);
-
-    boolean existsByStateAndCityAndAddress(String state, String city, String address);
+    boolean existsByWarehouseNameAndStateAndCityAndAddress(String warehouseName, String state, String city, String address);
+    Warehouse findByWarehouseNameAndStateAndCityAndAddress(String warehouseName, String state, String city, String address);
 }

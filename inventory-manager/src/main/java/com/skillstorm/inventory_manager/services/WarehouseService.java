@@ -30,17 +30,17 @@ public class WarehouseService {
         String city = warehouse.getCity();
         String address = warehouse.getAddress();
 
-        if (repo.existsByWarehouseName(warehouseName) && repo.existsByStateAndCityAndAddress(state, city, address)) {
+        if (repo.existsByWarehouseNameAndStateAndCityAndAddress(warehouseName,state, city, address)) {
             throw new EntityExistsException("Warehouse already exists");
         }
         
         return repo.save(warehouse);
     }
 
-    public void update(Integer id, Warehouse warehouse) {
+    public Warehouse update(Integer id, Warehouse warehouse) {
         if (repo.existsById(id)) {
             warehouse.setId(id);
-            repo.save(warehouse);
+            return repo.save(warehouse);
         } else {
             throw new NoSuchElementException("Warehouse with id: " + id + "does not exist");
         }

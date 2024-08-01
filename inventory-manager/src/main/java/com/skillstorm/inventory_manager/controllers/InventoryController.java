@@ -70,10 +70,10 @@ public class InventoryController {
     }
 
     @PutMapping("/update")
-    public void update(@Valid @RequestBody Inventory item) {
+    public Inventory update(@Valid @RequestBody Inventory item) {
         // update contents of item with specific id
         InventoryCompositeKey id = item.getId();
-        service.update(id, item);
+        return service.update(id, item);
     }
 
     @DeleteMapping("/delete")
