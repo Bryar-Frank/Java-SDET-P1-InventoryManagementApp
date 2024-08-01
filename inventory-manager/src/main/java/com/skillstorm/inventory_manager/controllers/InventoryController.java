@@ -69,14 +69,14 @@ public class InventoryController {
         return service.create(item);
     }
 
-    @PutMapping
+    @PutMapping("/update")
     public void update(@Valid @RequestBody Inventory item) {
         // update contents of item with specific id
         InventoryCompositeKey id = item.getId();
         service.update(id, item);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete")
     public void delete(@Valid @RequestBody InventoryCompositeKey id) {
         service.deleteById(id);;
     }
