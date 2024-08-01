@@ -22,14 +22,16 @@ public class WarehouseService {
     @Transactional // Rollback on RuntimeExceptions
     public Warehouse create(Warehouse warehouse) {
 
+        //Assuming that warehouse not null due to @Valid on Controller method
         String warehouseName = warehouse.getWarehouseName().toLowerCase();
         String state = warehouse.getState().toLowerCase();
         String city = warehouse.getCity().toLowerCase();
         String address = warehouse.getAddress().toLowerCase();
+        
         if (repo.existsByWarehouseName(warehouseName) && repo.existsByStateAndCityAndAddress(state, city, address)) {
             throw new EntityExistsException("Warehouse already exists");
         }
-        //Assuming that warehouse and product are not null due to @Valid on Controller method
+        
         return repo.save(warehouse);
     }
 
