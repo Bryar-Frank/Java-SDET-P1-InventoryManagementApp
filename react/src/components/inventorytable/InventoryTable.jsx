@@ -4,7 +4,7 @@ import { Grid, GridContainer, Table } from '@trussworks/react-uswds';
 
 export default function InventoryTable () {
 
-        // TODO fetch data from backend and display in table
+    // fetch data from backend and display in table
     // when the component is mounted
 
     const url = "http://localhost:8080/inventory";
@@ -16,7 +16,7 @@ export default function InventoryTable () {
 
     useEffect(() => {
       fetch(url, {method: "GET"})
-      .then(data => data.json()) // arrow function notation rules 
+      .then(data => data.json())  
       .then(returnedData => {
           //unpack the json in the order we want
           for (let item of returnedData) {
