@@ -1,7 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button, Alert, Breadcrumb, Card, Form } from 'react-bootstrap'
+import { Button, Alert, Breadcrumb, Form } from 'react-bootstrap'
 
 export default function NewWarehouseForm () {
+
+    const url = "http://localhost:8080/warehouse/add";
+
+    let sendPOST = function(data) {
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: data
+        }).then(response => response.json())
+        .then(data => console.log(data))
+        .catch(err => console.error(err));
+    }
 
     const submitForm = (e) => {
         e.preventDefault()
@@ -17,7 +31,7 @@ export default function NewWarehouseForm () {
         };
 
 
-        console.log( formatedData )
+        sendPOST( JSON.stringify(formatedData) )
     }
 
 
