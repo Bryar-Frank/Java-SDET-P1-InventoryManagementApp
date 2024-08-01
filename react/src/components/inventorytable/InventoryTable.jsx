@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { Grid, GridContainer, Table } from '@trussworks/react-uswds';
+import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function InventoryTable () {
 
@@ -39,10 +40,10 @@ export default function InventoryTable () {
 
     return (<>{isLoaded && 
 
-      <table>
+      <Table striped bordered hover>
         <thead><tr>{getHeadings(items)}</tr></thead>
         <tbody>{getRows(items)}</tbody>
-      </table> 
+      </Table> 
 
     }</>);
 }
@@ -60,15 +61,22 @@ function getHeadings (data) {
 
 function getRows (data) {
   return data.map(obj => {
-    return <tr key={obj.product + obj.warehouse}>{getCells(obj)}</tr>
+    //console.log(obj.product + obj.warehouse);
+    return <tr key={obj.product + "," + obj.warehouse}>{getCells(obj)}</tr>
   });
 }
 
 function getCells(obj) {
   //console.log(Object.entries(obj));
   return Object.entries(obj).map(entry => {
+    if (entry[0] == 'product') {
+      console.log(obj);
+      return <td key={entry[0]}>
+        <Link to={{ pathname: '/editproduct', state: obj}}>{entry[1]}</Link>
+      </td>
+    }
     if (entry[0] != 'id') {
-      return <td key={entry[0]}>{entry[1]}</td>
+      return <td key={entry[0]}>{entry[1] ?? "None"}</td>
     }
   });
 }
