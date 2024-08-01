@@ -4,14 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skillstorm.inventory_manager.models.Inventory;
-import com.skillstorm.inventory_manager.models.InventoryCompositeKey;
 import com.skillstorm.inventory_manager.models.Warehouse;
 import com.skillstorm.inventory_manager.services.WarehouseService;
 
@@ -23,19 +23,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173/")
 @RequestMapping("/warehouse")
 public class WarehouseController {
     @Autowired
     private WarehouseService service;
 
-    @GetMapping("/warehouses")
+    @GetMapping
     public List<Warehouse> findAllWarehouses() {
         return service.findAllWarehouses();
     }
 
-    @PostMapping
+    @PostMapping("/add")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Warehouse create(@Valid @RequestBody Warehouse warehouse) {
+    public Warehouse create(@RequestBody Warehouse warehouse) {
         //creates a new entity
         return service.create(warehouse);
     }
@@ -47,8 +48,8 @@ public class WarehouseController {
         service.update(id, warehouse);
     }
     
-    @DeleteMapping
-    public void delete(@Valid @RequestBody Integer id) {
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
         service.deleteById(id);;
     }
 

@@ -20,7 +20,7 @@ import jakarta.persistence.Table;
  *      state    VARCHAR
  *      city     VARCHAR
  *      address  VARCHAR
- *      capacity VARCHAR
+ *      capacity INT
  * 
  * p_id => PRODUCTs
  *      id      INT
@@ -41,11 +41,11 @@ public class Warehouse {
     private String state;
     private String city;
     private String address;
-    private String capacity;
+    private Integer capacity;
     
     public Warehouse() {
     }
-    public Warehouse(Integer id, String warehouseName, String state, String city, String address, String capacity) {
+    public Warehouse(Integer id, String warehouseName, String state, String city, String address, Integer capacity) {
         this.id = id;
         this.warehouseName = warehouseName;
         this.state = state;
@@ -84,10 +84,10 @@ public class Warehouse {
     public void setAddress(String address) {
         this.address = address;
     }
-    public String getCapacity() {
+    public Integer getCapacity() {
         return capacity;
     }
-    public void setCapacity(String capacity) {
+    public void setCapacity(Integer capacity) {
         this.capacity = capacity;
     }
     @Override
@@ -143,7 +143,7 @@ public class Warehouse {
             return false;
         return true;
     }
-    
+   
 
 }
 

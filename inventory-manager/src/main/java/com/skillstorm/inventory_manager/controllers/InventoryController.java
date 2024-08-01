@@ -7,13 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skillstorm.inventory_manager.models.Inventory;
 import com.skillstorm.inventory_manager.models.InventoryCompositeKey;
 import com.skillstorm.inventory_manager.models.Product;
-import com.skillstorm.inventory_manager.models.Warehouse;
 import com.skillstorm.inventory_manager.services.InventoryService;
 
 import jakarta.validation.Valid;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +22,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -65,7 +62,7 @@ public class InventoryController {
     }
     
 
-    @PostMapping
+    @PostMapping("/add")
     @ResponseStatus(code = HttpStatus.CREATED)
     public Inventory create(@Valid @RequestBody Inventory item) {
         //creates a new entity

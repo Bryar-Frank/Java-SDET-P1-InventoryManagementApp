@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skillstorm.inventory_manager.models.Warehouse;
 import com.skillstorm.inventory_manager.repositories.WarehouseRepository;
@@ -11,6 +12,7 @@ import com.skillstorm.inventory_manager.repositories.WarehouseRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.transaction.Transactional;
 
+@Service
 public class WarehouseService {
     @Autowired
     private WarehouseRepository repo;
@@ -23,11 +25,11 @@ public class WarehouseService {
     public Warehouse create(Warehouse warehouse) {
 
         //Assuming that warehouse not null due to @Valid on Controller method
-        String warehouseName = warehouse.getWarehouseName().toLowerCase();
-        String state = warehouse.getState().toLowerCase();
-        String city = warehouse.getCity().toLowerCase();
-        String address = warehouse.getAddress().toLowerCase();
-        
+        String warehouseName = warehouse.getWarehouseName();
+        String state = warehouse.getState();
+        String city = warehouse.getCity();
+        String address = warehouse.getAddress();
+
         if (repo.existsByWarehouseName(warehouseName) && repo.existsByStateAndCityAndAddress(state, city, address)) {
             throw new EntityExistsException("Warehouse already exists");
         }
