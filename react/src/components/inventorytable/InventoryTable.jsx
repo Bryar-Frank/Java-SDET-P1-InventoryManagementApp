@@ -38,14 +38,18 @@ export default function InventoryTable () {
     }, [])
     
 
-    return (<>{isLoaded && 
+    return (<>        
+      <h1>All Inventory</h1>
+      
+      {isLoaded && 
+        <Table striped bordered hover>
+          <thead><tr>{getHeadings(items)}</tr></thead>
+          <tbody>{getRows(items)}</tbody>
+        </Table>
+      }
 
-      <Table striped bordered hover>
-        <thead><tr>{getHeadings(items)}</tr></thead>
-        <tbody>{getRows(items)}</tbody>
-      </Table> 
-
-    }</>);
+      <Link to="/newitem"><button id="additem" >Add New Item</button></Link>
+    </>);
 }
 
 function getHeadings (data) {
@@ -72,7 +76,7 @@ function getCells(obj) {
     if (entry[0] == 'product') {
       console.log(obj);
       return <td key={entry[0]}>
-        <Link to={{ pathname: '/editproduct', state: obj}}>{entry[1]}</Link>
+        <Link to='/editproduct' state={obj}>{entry[1]}</Link>
       </td>
     }
     if (entry[0] != 'id') {
