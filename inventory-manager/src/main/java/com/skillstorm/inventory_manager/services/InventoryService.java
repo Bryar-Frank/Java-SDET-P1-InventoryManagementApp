@@ -35,9 +35,7 @@ public class InventoryService {
     public List<Product> findAllProducts() {
         return productRepo.findAll();
     }
-    public List<Warehouse> findAllWarehouses() {
-        return warehouseRepo.findAll();
-    }
+
 
     public Inventory findById(InventoryCompositeKey id) {
         

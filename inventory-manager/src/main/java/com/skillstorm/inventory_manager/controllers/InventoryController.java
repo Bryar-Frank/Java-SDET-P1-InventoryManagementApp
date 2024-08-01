@@ -53,15 +53,10 @@ public class InventoryController {
     public List<Product> findAllProducts() {
         return service.findAllProducts();
     }
-    @GetMapping("/warehouses")
-    public List<Warehouse> findAllWarehouses() {
-        return service.findAllWarehouses();
-    }
     
     @GetMapping("/item")
     public ResponseEntity<Inventory> findById(@Valid @RequestBody InventoryCompositeKey id) {
         Inventory item = service.findById(id);
-        
         if (item != null) { 
             return ResponseEntity.ok(item);
         }
