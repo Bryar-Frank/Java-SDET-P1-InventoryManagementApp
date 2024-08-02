@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom'
 import { HomePage, AllInventoryPage, WarehouseInfoPage, NewInventoryPage, NewWarehousePage, EditProductPage } from './pages/index'
 import BootstrapScratch from './BootstrapScratch'
 import EditProductForm from './components/forms/EditProductForm'
-import InventoryTable from './components/inventorytable/InventoryTable'
+import InventoryTable from './components/tables/InventoryTable'
 
 
 
