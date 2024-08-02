@@ -5,7 +5,7 @@ import inventoryLogo from '../../assets/inventoryLogo.jpg'
 
 
 export function HomePage () {
-    
+    //Simple front page for the App
     
     return <>
     <Container>
@@ -13,7 +13,8 @@ export function HomePage () {
         <Card className="mb-2" style={{ background: "#AAA"}}>
             <Card.Body>
                 <Card.Title>
-                    <h2>Inventory Manager</h2>
+                    <h2>The Simpleton's</h2>
+                    <h2>Sorting Sanctum</h2>
                 </Card.Title>
             </Card.Body>
             <Card.Img src={inventoryLogo} width="120" height="480"/>

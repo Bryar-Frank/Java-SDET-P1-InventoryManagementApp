@@ -10,7 +10,8 @@ export default function NewProductForm () {
     const [isLoaded, setIsLoaded] = useState(false);
 
 
-
+    //useEffect is used to load the page on mount
+    //and reload page when table is changed
     useEffect(() => {
         fetch(urlWarehouses, {
             method: "GET",
@@ -19,8 +20,7 @@ export default function NewProductForm () {
             }
         }).then(data => data.json())  
         .then(returnedData => {
-            //console.log("warehouses: ")
-            //console.log(returnedData)
+
             setWarehouses(returnedData);
             setChosenWarehouse(returnedData[0])
             setIsLoaded(true);
@@ -40,12 +40,13 @@ export default function NewProductForm () {
     }
 
     const submitForm = (e) => {
-        e.preventDefault()
+        e.preventDefault() //prevent the default behavior of submit form
 
         let formData =  new FormData(e.target)
         formData = Object.fromEntries(formData)
-        //console.log("formData: ")
-        //console.log(formData);
+
+        //formats the data for an inventory item
+        //including dropdown options for warehouse
         let formatedData = {
             "id": {
                 "product": {
@@ -66,8 +67,7 @@ export default function NewProductForm () {
             "itemCap": formData["itemCap"]
         };
 
-        // console.log("Sending POST...")
-        // console.log(formatedData)
+        //send the POST request
         sendPOST( formatedData );
     }
 
@@ -77,8 +77,10 @@ export default function NewProductForm () {
         setChosenWarehouse(warehouses[selectedIndex]);
     }
 
+    //form waits for warehouses to be loaded for dropdown menu
     return <>
         <h2>New Product Form</h2>
+    {isLoaded && 
         <Form onSubmit={submitForm}>
             <Form.Group className="mb-3" >
                 <Form.Label>Warehouse</Form.Label>
@@ -125,7 +127,7 @@ export default function NewProductForm () {
                 Submit
             </Button>           
         </Form>
-    </>
+  }</>
 }
 
 function getOptions (data) {

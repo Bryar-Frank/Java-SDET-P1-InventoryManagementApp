@@ -14,27 +14,7 @@ export default function EditProductForm () {
 
     const url = "http://localhost:8080/inventory/update";
 
-    // const dummyData = {
-    //     "id": {
-    //         "product": {
-    //             "id": ,
-    //             "productName": "",
-    //             "size": 
-    //         },
-    //         "warehouse": {
-    //             "id": ,
-    //             "warehouseName": "r",
-    //             "state": "",
-    //             "city": "",
-    //             "address": "",
-    //             "capacity": 
-    //         }
-    //     },
-    //     "quantity": ,
-    //     "price": ,
-    //     "itemCap": 
-    // };
-
+    //parameter is json repesentation of an item that needs to be updated
     let sendPUT = function(data) {
         fetch(url, {
             method: 'PUT',
@@ -47,13 +27,17 @@ export default function EditProductForm () {
         .catch(err => console.error(err));
     }
 
+    //This function runs when submit button is pressed
     const submitForm = (e) => {
         e.preventDefault()
 
+        //takes in the data from the form
         let formData =  new FormData(e.target)
         formData = Object.fromEntries(formData)
-        console.log("formData: ")
-        console.log(formData);
+
+        //formats the date into a proper representation of the inventory item
+        // the doubl pipe " || " lines will keep the information from state the same
+        // in case no information is put in the form fields
         let formatedData = {
             "id": {
                 "product": {
@@ -75,10 +59,12 @@ export default function EditProductForm () {
             "itemCap": formData["itemCap"] || item.itemCap
         };
 
+        //after formating, send the PUT request
         sendPUT( formatedData );
     }
 
-
+    //The for is in the return. The inventory info from state is used in the placeholders
+    //when the page loads. Warehouse field is read only because we are onlu updating product here
     return <>
         <h2>Edit "{product.productName}"</h2>
         <h3>from "{warehouse.warehouseName}"</h3>

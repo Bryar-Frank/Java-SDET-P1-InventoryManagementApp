@@ -4,7 +4,8 @@ import logo from '../../assets/tabIcon.png'
 import { Link } from 'react-router-dom'
 
 export default function NavigationBar() {
-
+  //creates a navigation bar that links the brand name to home page
+  //and gives a couple links to items and warehousepages
   return <>
     <Navbar bg="dark" data-bs-theme="dark" id='navbar'>
         <Container>

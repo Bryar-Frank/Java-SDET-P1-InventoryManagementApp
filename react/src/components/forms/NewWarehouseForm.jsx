@@ -17,6 +17,8 @@ export default function NewWarehouseForm () {
         .catch(err => console.error(err));
     }
 
+    //when form is submited, this formats the data into json
+    // and then calls the POST request function
     const submitForm = (e) => {
         e.preventDefault()
 
@@ -30,11 +32,11 @@ export default function NewWarehouseForm () {
             "capacity": formData["capacity"]
         };
 
-
+        //send the POST request
         sendPOST( formatedData )
     }
 
-
+    //simple form to get data for warehouse
     return <>
         <h2>New Warehouse Form</h2>
         <Form onSubmit={submitForm}>

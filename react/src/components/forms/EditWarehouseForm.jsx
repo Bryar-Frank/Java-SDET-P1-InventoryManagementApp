@@ -13,6 +13,7 @@ export default function EditWarehouseForm () {
 
     const url = "http://localhost:8080/warehouse/update";
 
+    //parameter is json repesentation of an warehouse that needs to be updated
     let sendPUT = function(data) {
         fetch(url, {
             method: 'POST',
@@ -25,14 +26,15 @@ export default function EditWarehouseForm () {
         .catch(err => console.error(err));
     }
 
+    //This function runs when submit button is pressed
     const submitForm = (e) => {
         e.preventDefault()
 
         let formData =  new FormData(e.target)
         formData = Object.fromEntries(formData)
-        // console.log("formData: ")
-        // console.log(formData);
-        
+        //formats the date into a proper representation of the warehouse
+        // the doubl pipe " || " lines will keep the information from state the same
+        // in case no information is put in the form fields
         let formatedData = {
             "id": warehouse.id,
             "warehouseName": formData["warehouseName"] || warehouse.warehouseName,
@@ -42,12 +44,12 @@ export default function EditWarehouseForm () {
             "capacity": formData["capacity"] || warehouse.capacity 
         };
 
-        // console.log("formatedDate: ")
-        // console.log(formatedData)
+        // after formatting send the PUT request
         sendPUT( formatedData );
     }
 
-
+    //The for is in the return. The warehouse info from state is used in the placeholders
+    //when the page loads.
     return <>
     { warehouse && 
         <Container>

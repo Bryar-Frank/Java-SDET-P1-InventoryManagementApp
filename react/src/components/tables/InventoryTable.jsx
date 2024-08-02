@@ -8,16 +8,18 @@ export default function InventoryTable () {
     // fetch data from backend and display in table
     // when the component is mounted
 
-    const urlGet = "http://localhost:8080/inventory";
-    const urlDelete = "http://localhost:8080/inventory/delete"
+    const url = "http://localhost:8080/inventory";
 
+    //is loaded is for when the table first loads
+    //reload is for when the table gets updated while on the page
     const [items, setItems] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
     const [reload, setReload] = useState(0);
     
+    //runs from the delete buttons. parameter is id of warehouse
     const deleteItem = (id) => {
       console.log(id)
-      fetch(urlDelete, {
+      fetch(url + "/delete", {
           method: "DELETE",
           headers: {
           'Content-Type': 'application/json' 
@@ -27,8 +29,10 @@ export default function InventoryTable () {
         .catch(err => console.error(err));
     }
 
+    //use effect here allows for the fetch to happen when component is mounted
+    //and when the table is edited
     useEffect(() => {
-      fetch(urlGet, {
+      fetch(url, {
         method: "GET",
         headers: {
         'Content-Type': 'application/json' 
@@ -36,6 +40,7 @@ export default function InventoryTable () {
       })
       .then(data => data.json())  
       .then(returnedData => {
+
           //unpack the json in the order we want
           let formatedItems = []
           for (let item of returnedData) {
@@ -47,23 +52,27 @@ export default function InventoryTable () {
               "Size" : item?.id?.product?.size,
               "Warehouse Capacity" : item?.id?.warehouse?.capacity,
               "Item Capacity" : item?.itemCap,
-              "Remove?" : "X",
-              "item" : item
+              "Remove?" : "X", //this is for the delete button
+              "item" : item //save the entity to pass with the delete button
             }
             formatedItems.push(formatedItem)
-            // console.log("Item: ")
+  
             // console.log(item)
-            // console.log("Formated Item: ")
             // console.log(formatedItem)
           }          
-          setItems(formatedItems);
-          setIsLoaded(true);
+          setItems(formatedItems); //save all the entries in a state variable
+          setIsLoaded(true); //this is let the table wait to load until the GET request has processed
       })
       .catch(err => { alert(err); console.log(err) })
-    }, [reload])
+    }, [reload]) //allows the GET to be called after the table changes
     
+
+    //This was to make the building of the table easier without
+    //having to manually type it all out
     function getHeadings (data) {
-  
+      
+      //data parameter will consist of a list of all the warehouses
+      //so we can grabe the first warehouse data[0] and get its keys
       let headings = Object.keys(data[0]).map(name => {
         if (name != 'item') {
           return <th key={name}>{name}</th>
@@ -72,15 +81,19 @@ export default function InventoryTable () {
       
       return headings;
     }
-    
+
+
+    //data is a list of warehouses, so for eachwarehouse    
     function getRows (data) {
+     //we can create a row and then call the getCells for that row     
       return data.map(obj => {
         return <tr key={obj.item.id.product.id + " " + obj.item.id.warehouse.id}>{getCells(obj)}</tr>
       });
     }
-    
+
+
+    //returns a cell for each element in the warehouse obj sent in    
     function getCells(obj) {
-      //console.log(Object.entries(obj));
       return Object.entries(obj).map(entry => {
         
         //if table column is Product Name or Warehouse Name, create links to edit forms
@@ -99,13 +112,15 @@ export default function InventoryTable () {
           return <td key={entry[0]}>
             <Button onClick={()=>{deleteItem(obj.item.id)}}>{entry[1]}</Button>
           </td>
-        //  
+        
+        // this will take every other cell and print its value or "none" if empty  
         } else if (entry[0] != 'item') {
           return <td key={entry[0]}>{entry[1] ?? "None"}</td>
         }
       });
     }
 
+    //creating the functions to make the table makes the return simple.    
     return (<>        
 
       {isLoaded && 
