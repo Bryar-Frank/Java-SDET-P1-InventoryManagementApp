@@ -5,10 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function InventoryTable () {
 
-    // fetch data from backend and display in table
-    // when the component is mounted
 
-    const url = "http://localhost:8080/inventory";
 
     //is loaded is for when the table first loads
     //reload is for when the table gets updated while on the page
@@ -66,7 +63,9 @@ export default function InventoryTable () {
       .catch(err => { alert(err); console.log(err) })
     }, [reload]) //allows the GET to be called after the table changes
     
-
+    // fetch data from backend and display in table
+    // when the component is mounted
+    const url = "http://localhost:8080/inventory";
     //This was to make the building of the table easier without
     //having to manually type it all out
     function getHeadings (data) {

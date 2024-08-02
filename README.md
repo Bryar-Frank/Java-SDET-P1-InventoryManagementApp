@@ -51,14 +51,14 @@ addition of items that would cause the warehouse to exceed its capacity.
     - DONE - Mock up initial Design with Static Dummy Information
     - DONE - Get successful fetchs for inventory information
 
-    - TODO - Get successful POST, PUT, and DELETE fetchs done
-    - TODO - FIX ALL TODOS is React Structure
+    - DONE - Get successful POST, PUT, and DELETE fetchs done
+    - DONE- FIX ALL TODOS is React Structure
         + Homepage - List Warehouse/Inventory Options (+ sign for new Warehouse)
         + Warehouse Page - Warehouse Info with option to edit
         + New Item Form
         + New Warehouse Form
         + New Product Form
-    - TODO - Make it look pretty!!
+    - DONE - Make it look pretty!!
 
 
 

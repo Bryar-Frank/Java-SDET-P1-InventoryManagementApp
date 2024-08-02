@@ -16,7 +16,7 @@ export default function EditWarehouseForm () {
     //parameter is json repesentation of an warehouse that needs to be updated
     let sendPUT = function(data) {
         fetch(url, {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },

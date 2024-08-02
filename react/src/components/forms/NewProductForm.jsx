@@ -76,7 +76,7 @@ export default function NewProductForm () {
         const {selectedIndex } = e.target;
         setChosenWarehouse(warehouses[selectedIndex]);
     }
-
+    
     //form waits for warehouses to be loaded for dropdown menu
     return <>
         <h2>New Product Form</h2>
