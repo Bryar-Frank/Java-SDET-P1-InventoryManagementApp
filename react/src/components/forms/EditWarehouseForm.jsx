@@ -13,15 +13,6 @@ export default function EditWarehouseForm () {
 
     const url = "http://localhost:8080/warehouse/update";
 
-    // const dummyData = {
-    //         "id": 2,
-    //         "warehouseName": "Walmart Warehouse",
-    //         "state": "VA",
-    //         "city": "Winchester",
-    //         "address": "278 Goldbug Rd",
-    //         "capacity": 1578
-    //     }
-
     let sendPUT = function(data) {
         fetch(url, {
             method: 'POST',

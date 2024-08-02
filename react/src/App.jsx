@@ -27,6 +27,8 @@ function App() {
                 <Route path='/newwarehouse' element={<NewWarehousePage />} />
                 <Route path='/editwarehouse' element={<EditWarehousePage />} />
                 
+                <Route path='/deleteitem' element={<AllInventoryPage/>} />
+                <Route path='/deletewarehouse' element={<AllWarehousesPage/>} />
                 {/* <Route path='/' element={<HomePage />} /> */}
                 <Route path='/' element={<BootstrapScratch />} />
 

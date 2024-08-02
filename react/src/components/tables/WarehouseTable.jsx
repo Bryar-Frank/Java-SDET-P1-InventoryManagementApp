@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function WarehouseTable () {
@@ -12,8 +12,15 @@ export default function WarehouseTable () {
 
     const [warehouses, setWarehouses] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [reload, setReload] = useState(0);
 
-
+    const deleteWarehouse = (id) => {
+        
+        fetch(url + "/" + id, {
+            method: "DELETE",
+        }).then( () => setReload(reload+1) )
+        .catch(err => console.error(err));
+    }
 
     useEffect(() => {
         fetch(url, {
@@ -24,32 +31,71 @@ export default function WarehouseTable () {
         }).then(data => data.json())  
         .then(returnedData => {
             
+            let formatedWarehouses = []
+            
             //unpack the json in the order we want
             for (let warehouse of returnedData) {
                 let formatedData = {
-                    "id": warehouse["id"],
-                    "warehouseName": warehouse["warehouseName"],
-                    "state": warehouse["stat"],
-                    "city": warehouse["city"],
-                    "address": warehouse["address"],
-                    "capacity": warehouse["capacity"]
+                    "Warehouse Name": warehouse["warehouseName"],
+                    "State": warehouse["state"],
+                    "City": warehouse["city"],
+                    "Address": warehouse["address"],
+                    "Capacity": warehouse["capacity"],
+                    "Remove?": "X",
+                    "warehouse": warehouse 
                 }
-
-                warehouse=formatedData;
+                formatedWarehouses.push(formatedData);
             }
 
             // console.log(returnedData)
-            setWarehouses(returnedData);
+            setWarehouses(formatedWarehouses);
             setIsLoaded(true);
         
         }).catch(err => { alert(err); console.log(err) })
-        // TODO instead show your own alert not builtin 
-        //  might MUI snackbar etc
-        //  Toast Messages
-        // only fetch when mounting
-    }, [])
+    }, [reload])
     
-
+    function getHeadings (data) {
+  
+    let headings = Object.keys(data[0]).map(name => {
+        if (name != 'warehouse') {
+        return <th key={name}>{name}</th>
+        }
+    });
+    
+    return headings;
+    }
+    
+    function getRows (data) {
+    return data.map(obj => {
+        //console.log(obj);
+        return <tr key={obj.warehouse.id}>{getCells(obj)}</tr>
+    });
+    }
+    
+    
+    function getCells(obj) {
+    //   console.log(Object.entries(obj));
+    return Object.entries(obj).map(entry => {
+    
+        if (entry[0] == 'Warehouse Name') {
+        
+        return <td key={entry[0]}>
+            <Link to='/editwarehouse' state={obj.warehouse}>{entry[1]}</Link>
+        </td>
+    
+        } else if (entry[0] == "Remove?") {
+    
+            return <td key={entry[0]}>
+            <Button onClick={()=>{deleteWarehouse(obj.warehouse.id)}}>{entry[1]}</Button>
+            </td> 
+    
+        }else if (entry[0] != 'warehouse') {
+    
+        return <td key={entry[0]}>{entry[1] ?? "None"}</td>
+    
+        }
+    });
+    }
     return (<>       
       {isLoaded && 
         <Table striped bordered hover>
@@ -58,39 +104,5 @@ export default function WarehouseTable () {
         </Table>
       }
     </>);
-    //TODO CREATE NEW WAREHOUSE PAGE
 }
 
-function getHeadings (data) {
-  
-  let headings = Object.keys(data[0]).map(name => {
-    if (name != 'id') {
-      return <th key={name}>{(name == 'warehouseName') ? "Warehouse" : name}</th>
-    }
-  });
-  
-  return headings;
-}
-
-function getRows (data) {
-  return data.map(obj => {
-    //console.log(obj);
-    return <tr key={obj.id}>{getCells(obj)}</tr>
-  });
-}
-
-//TODO MAKE EDITWAREHOUSE FORM AND FIX IF STATEMENTS
-function getCells(obj) {
-  //console.log(Object.entries(obj));
-  return Object.entries(obj).map(entry => {
-    if (entry[0] == 'warehouseName') {
-      //console.log(obj);
-      return <td key={entry[0]}>
-        <Link to='/editwarehouse' state={obj}>{entry[1]}</Link>
-      </td>
-    }
-    if (entry[0] != 'id') {
-      return <td key={entry[0]}>{entry[1] ?? "None"}</td>
-    }
-  });
-}

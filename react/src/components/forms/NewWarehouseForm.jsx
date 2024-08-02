@@ -7,7 +7,7 @@ export default function NewWarehouseForm () {
 
     let sendPOST = function(data) {
         fetch(url, {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
