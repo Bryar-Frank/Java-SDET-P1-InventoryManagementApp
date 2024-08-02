@@ -37,6 +37,10 @@
   padding: 2em;
 }
 
+.card-image {
+  max-width: 20%;
+}
+
 .read-the-docs {
   color: #888;
 }

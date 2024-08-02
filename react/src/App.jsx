@@ -5,8 +5,7 @@ import NavigationBar from './components/navigationbar/NavigationBar'
 import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom'
 import { HomePage, AllInventoryPage, AllWarehousesPage, NewInventoryPage, NewWarehousePage, EditProductPage, EditWarehousePage } from './pages/index'
 import BootstrapScratch from './BootstrapScratch'
-import EditProductForm from './components/forms/EditProductForm'
-import InventoryTable from './components/tables/InventoryTable'
+
 
 
 
@@ -16,8 +15,8 @@ function App() {
     <>
 
       <main>
-        <BrowserRouter basename='/'> 
-            <NavigationBar/>     
+      <NavigationBar/>
+        <BrowserRouter basename='/'>      
             <Routes>
                 <Route path='/inventory' element={<AllInventoryPage />} />
                 <Route path='/newitem' element={<NewInventoryPage />} />
@@ -29,10 +28,9 @@ function App() {
                 
                 <Route path='/deleteitem' element={<AllInventoryPage/>} />
                 <Route path='/deletewarehouse' element={<AllWarehousesPage/>} />
-                {/* <Route path='/' element={<HomePage />} /> */}
-                <Route path='/' element={<BootstrapScratch />} />
-
-                <Route path='*' element={<Navigate to='/' />} />
+                <Route path='/home' element={<HomePage />} />
+                
+                <Route path='*' element={<Navigate to='/home' />} />
             </Routes>
         </BrowserRouter>
       </main>
