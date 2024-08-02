@@ -50,18 +50,32 @@ export default function EditProductForm () {
     const submitForm = (e) => {
         e.preventDefault()
 
-        // let formData =  new FormData(e.target)
-        // formData = Object.fromEntries(formData)
-        // let formatedData = {
-        //     "warehouseName": formData["warehouseName"],
-        //     "state": formData["state"],
-        //     "city": formData["city"],
-        //     "address": formData["address"],
-        //     "capacity": formData["capacity"]
-        // };
+        let formData =  new FormData(e.target)
+        formData = Object.fromEntries(formData)
+        console.log("formData: ")
+        console.log(formData);
+        let formatedData = {
+            "id": {
+                "product": {
+                    "id": product.id,
+                    "productName": formData["productName"] || product.productName,
+                    "size": formData["size"] || product.size
+                },
+                "warehouse": {
+                    "id": warehouse.id,
+                    "warehouseName": formData["warehouseName"] || warehouse.warehouseName,
+                    "state": warehouse.state,
+                    "city": warehouse.city,
+                    "address": warehouse.address,
+                    "capacity": warehouse.capacity 
+                }
+            },
+            "quantity": formData["quantity"] || item.quantity,
+            "price": formData["price"] || item.price,
+            "itemCap": formData["itemCap"] || item.itemCap
+        };
 
-
-        sendPUT( dummyData )
+        sendPUT( formatedData );
     }
 
 
@@ -76,7 +90,7 @@ export default function EditProductForm () {
 
             <Form.Group className="mb-3" >
                 <Form.Label>Name of Product</Form.Label>
-                <Form.Control type="text" name='productName' placeholder={product.productName}/>
+                <Form.Control type="text" name='productName' placeholder={product.productName} />
             </Form.Group>
 
             <Form.Group className="mb-3" >
@@ -86,17 +100,17 @@ export default function EditProductForm () {
 
             <Form.Group className="mb-3" >
                 <Form.Label>Quantity of Product</Form.Label>
-                <Form.Control type="text" name='address' placeholder={item.quantity} />
+                <Form.Control type="text" name='quantity' placeholder={item.quantity} />
             </Form.Group>
 
             <Form.Group className="mb-3" >
                 <Form.Label>Product Price</Form.Label>
-                <Form.Control type="text" name='capacity' placeholder={item.price}/>
+                <Form.Control type="text" name='price' placeholder={item.price}/>
             </Form.Group>
             
             <Form.Group className="mb-3" >
                 <Form.Label>Max Number of Product for {warehouse.warehouseName}</Form.Label>
-                <Form.Control type="text" name='capacity' placeholder={item.maxCap}/>
+                <Form.Control type="text" name='itemCap' placeholder={item.itemCap}/>
                 <Form.Text className='text-muted'>
                     <em>*optional</em>
                 </Form.Text>
