@@ -39,8 +39,7 @@ export default function InventoryTable () {
     
 
     return (<>        
-      <h1>All Inventory</h1>
-      
+
       {isLoaded && 
         <Table striped bordered hover>
           <thead><tr>{getHeadings(items)}</tr></thead>
@@ -48,7 +47,6 @@ export default function InventoryTable () {
         </Table>
       }
 
-      <Link to="/newitem"><button id="additem" >Add New Item</button></Link>
     </>);
 }
 
@@ -74,7 +72,7 @@ function getCells(obj) {
   //console.log(Object.entries(obj));
   return Object.entries(obj).map(entry => {
     if (entry[0] == 'product') {
-      console.log(obj);
+      //console.log(obj);
       return <td key={entry[0]}>
         <Link to='/editproduct' state={obj}>{entry[1]}</Link>
       </td>

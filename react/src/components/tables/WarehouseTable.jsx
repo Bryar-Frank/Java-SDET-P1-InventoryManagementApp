@@ -50,9 +50,7 @@ export default function WarehouseTable () {
     }, [])
     
 
-    return (<>        
-      <h1>All Warehouses</h1>
-      
+    return (<>       
       {isLoaded && 
         <Table striped bordered hover>
           <thead><tr>{getHeadings(warehouses)}</tr></thead>

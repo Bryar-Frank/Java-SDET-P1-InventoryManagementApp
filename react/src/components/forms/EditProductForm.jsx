@@ -9,8 +9,8 @@ export default function EditProductForm () {
     const product = item.id.product;
     const warehouse = item.id.warehouse;
     
-
-    //console.log(data["id"])
+    //checking to make sure state was transferred correctly through useLocation()
+    console.log(item);
 
     const url = "http://localhost:8080/inventory/update";
 

@@ -1,8 +1,8 @@
 import EditProductForm from "../../components/forms/EditProductForm"
 
-export function EditProductPage (props) {
-    console.log(props.location)
+export function EditProductPage () {
+    
     return <>
-        <EditProductForm props/>
+        <EditProductForm />
     </>
 }
