@@ -1,6 +1,9 @@
+import EditWarehouseForm from "../../components/forms/EditWarehouseForm"
+
 export function EditWarehousePage () {
 
     return <>
-        TODO: MAKE EDIT WAREHOUSE FORM
+        <h1>Edit Warehouse</h1>
+        <EditWarehouseForm />
     </>
 }
