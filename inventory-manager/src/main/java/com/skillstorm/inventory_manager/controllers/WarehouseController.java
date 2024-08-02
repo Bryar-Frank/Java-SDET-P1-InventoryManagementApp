@@ -41,7 +41,7 @@ public class WarehouseController {
         return service.create(warehouse);
     }
 
-    @PutMapping
+    @PutMapping("/update")
     public Warehouse update(@Valid @RequestBody Warehouse warehouse) {
         // update contents of item with specific id
         Integer id = warehouse.getId();
