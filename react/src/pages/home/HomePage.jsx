@@ -9,7 +9,6 @@ export function HomePage () {
     
     return <>
     <Container>
-
         {/* mb-3 is 3 units of margin border */}
         <Card className="mb-2" style={{ background: "#AAA"}}>
             <Card.Body>
@@ -17,13 +16,8 @@ export function HomePage () {
                     <h2>Inventory Manager</h2>
                 </Card.Title>
             </Card.Body>
-            <Card.Img 
-                src={inventoryLogo}
-                width="120"
-                height="480"
-            />
+            <Card.Img src={inventoryLogo} width="120" height="480"/>
         </Card>
-
     </Container>
     </>
 }

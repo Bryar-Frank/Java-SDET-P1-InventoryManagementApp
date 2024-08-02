@@ -1,10 +1,11 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState } from 'react'
 import './App.css'
-
 import NavigationBar from './components/navigationbar/NavigationBar'
 import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom'
 import { HomePage, AllInventoryPage, AllWarehousesPage, NewInventoryPage, NewWarehousePage, EditProductPage, EditWarehousePage } from './pages/index'
-import BootstrapScratch from './BootstrapScratch'
+import { Container } from 'react-bootstrap'
+
 
 
 
@@ -13,10 +14,8 @@ function App() {
 
   return (
     <>
-
-      <main>
-      <NavigationBar/>
-        <BrowserRouter basename='/'>      
+        <BrowserRouter basename='/'>  
+        <NavigationBar/>
             <Routes>
                 <Route path='/inventory' element={<AllInventoryPage />} />
                 <Route path='/newitem' element={<NewInventoryPage />} />
@@ -33,7 +32,6 @@ function App() {
                 <Route path='*' element={<Navigate to='/home' />} />
             </Routes>
         </BrowserRouter>
-      </main>
     </>
   )
 }
