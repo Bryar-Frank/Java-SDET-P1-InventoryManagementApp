@@ -24,7 +24,7 @@ export default function EditWarehouseForm () {
 
     let sendPUT = function(data) {
         fetch(url, {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
