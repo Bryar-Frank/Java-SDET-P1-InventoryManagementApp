@@ -65,9 +65,10 @@ export default function NewProductForm () {
             "price": formData["price"],
             "itemCap": formData["itemCap"]
         };
-        console.log("Sending POST...")
-        console.log(formatedData)
-        //sendPOST( formatedData );
+
+        // console.log("Sending POST...")
+        // console.log(formatedData)
+        sendPOST( formatedData );
     }
 
     // update the chosen warehouse that will be used for POST request
@@ -88,12 +89,12 @@ export default function NewProductForm () {
 
             <Form.Group className="mb-3" >
                 <Form.Label>Product Name</Form.Label>
-                <Form.Control type="text" name='productName' />
+                <Form.Control type="text" name='productName' placeholder="required"/>
             </Form.Group>
 
             <Form.Group className="mb-3" >
                 <Form.Label>Product Size </Form.Label>
-                <Form.Control type="text" name='size' />
+                <Form.Control type="text" name='size' placeholder="required"/>
                 <Form.Text className='text-muted'>
                     rounded to nearest cubic inch
                 </Form.Text>
@@ -101,12 +102,12 @@ export default function NewProductForm () {
 
             <Form.Group className="mb-3" >
                 <Form.Label>Quantity of Item</Form.Label>
-                <Form.Control type="text" name='quantity' placeholder='0' />
+                <Form.Control type="text" name='quantity' placeholder='required' />
             </Form.Group>
 
             <Form.Group className="mb-3" >
                 <Form.Label>Price</Form.Label>
-                <Form.Control type="text" name='price' placeholder='99.99'/>
+                <Form.Control type="text" name='price' placeholder="required"/>
                 <Form.Text className='text-muted'>
                     must be in 0.00 format
                 </Form.Text>
