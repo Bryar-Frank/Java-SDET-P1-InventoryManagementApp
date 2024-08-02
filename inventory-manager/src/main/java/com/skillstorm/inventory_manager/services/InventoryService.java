@@ -130,6 +130,16 @@ public class InventoryService {
 
     public Inventory update(InventoryCompositeKey id, Inventory item) {
         if (repo.existsById(id)) {
+            //in case info was changed on the warehouse we should throw and error
+            if (!warehouseRepo.findById(id.getWarehouse().getId()).get().equals(id.getWarehouse())) {
+                throw new EntityExistsException("Warehouse doesn't exist with same info. please update warehouse first");
+            }
+
+            //incase product info was updated, we should update it here, but not warehouse info
+            //we don't need to check if product exists if Inventory id exists, so we just save it
+            Product updatedProduct = id.getProduct();
+            productRepo.save(updatedProduct);
+
             item.setId(id);
             return repo.save(item);
         } else {
