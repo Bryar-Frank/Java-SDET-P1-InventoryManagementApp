@@ -7,11 +7,11 @@ export default function NewWarehouseForm () {
 
     let sendPOST = function(data) {
         fetch(url, {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: data
+            body: JSON.stringify(data)
         }).then(response => response.json())
         .then(data => console.log(data))
         .catch(err => console.error(err));
@@ -31,7 +31,7 @@ export default function NewWarehouseForm () {
         };
 
 
-        sendPOST( JSON.stringify(formatedData) )
+        sendPOST( formatedData )
     }
 
 
