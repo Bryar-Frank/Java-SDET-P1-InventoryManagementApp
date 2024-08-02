@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import javax.management.RuntimeErrorException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,59 +69,43 @@ public class InventoryService {
     public Inventory create(Inventory item) {
         //Assuming that warehouse and product are not null due to @Valid on Controller method
         InventoryCompositeKey id = item.getId();
-        
         Warehouse warehouse = id.getWarehouse();
-        String wName = warehouse.getWarehouseName();
-        String state = warehouse.getState();
-        String city = warehouse.getCity();
-        String address = warehouse.getAddress();
         
         Product product = id.getProduct();
         String pName = product.getProductName();
         Integer size = product.getSize();
+        // we need to first check if the warehouse and product exist
 
-        //first we want to check if the warehouse exists, and if not warn to make a warehouse first
-        // we check this by checking that warehouse neither exists by id or by its values
-        if (!warehouseRepo.existsByWarehouseNameAndStateAndCityAndAddress(wName, state, city, address)
-                                                        && !warehouseRepo.existsById(warehouse.getId())) {
+        //for the warehouse, if it doesn't exist throw an error
+        if ( !warehouseRepo.existsById(warehouse.getId()) ) {
             throw new RuntimeException(
-                String.format("Cannot save item because warehouse: %s does not exist. Possibly create a warehouse first", warehouse)
+                String.format(
+                    "Cannot save item because warehouse: %s does not exist. Possibly create a warehouse first", 
+                    warehouse.getWarehouseName()
+                )
             );
+        }
+
+        //next for the product if it doesn't exist, we need to make and persist it
+        if (productRepo.existsByProductNameAndSize(pName, size)) {    
+            product = productRepo.findByProductNameAndSize(pName, size).get();
         
-        //now we know the warehouse exists, we want to check if the produt request had an id, and if it doesn't exist throw error
-        } else if ( product.getId() != null && !productRepo.existsById(product.getId()) ) {
-            throw new RuntimeException("prodcut id does not exist");
-        
-        //now that we know the warehouse exists and the product wasn't send with an incorrect id
-        //the server can check if the product/warehouse combo already exists, and if so, throw error
-        } else if (repo.existsById(id)) {
-        
-            throw new EntityExistsException("Product already exists in Warehouse. Please use update method");
-        
-        //now the only options left are that the product exits, but not in that warehouse, OR it doesn't exist
-        // so we check if the product doesn't exist, and if it doesn't create a new one.
-        }  else if (!productRepo.existsByProductNameAndSize(pName, size) && !productRepo.existsById(product.getId()))  {
-            
-            //NOTE we don't have to worry here about "product" not having Product Name/size fields because we check for that pn front end
+        } else { //create new product
             Product newProduct = new Product();
             newProduct.setProductName(product.getProductName());
             newProduct.setSize(product.getSize());
             product = productRepo.save(newProduct);
-
-        } //Now we know both the warehouse and product are existing so we create a new row in inventory
-
-
-        //need to first figure out if product/warehouse request had warehouse info, or id's
-        if (warehouse.getId()==null) {
-            warehouse = warehouseRepo.findByWarehouseNameAndStateAndCityAndAddress(wName, state, city, address);
-        } // and do the same with prodcut
-        if (product.getId()==null) {
-            product = productRepo.findByProductNameAndSize(pName, size);
         }
 
-        //now its time to create the new id and save the entity!!!
+        //now that we know the product and warehouse exist we can only save it if the id isn't taken already
+        //so we check if the Composite key already exists
         id.setProduct(product);
-        id.setWarehouse(warehouse);
+        id.setWarehouse(warehouseRepo.findById(warehouse.getId()).get());
+        if (repo.existsById(id)) {
+            throw new EntityExistsException("Item already exists in warehouse!");
+        }
+
+        //now its time to create the new inventory item and save the entity!!!
         item.setId(id);
         return repo.save(item);
     }
@@ -133,7 +116,7 @@ public class InventoryService {
             //in case info was changed on the warehouse we should not change it but still return the correct warehouse
             Warehouse warehouse = warehouseRepo.findById(id.getWarehouse().getId()).get();
             id.setWarehouse(warehouse);
-            
+
             //incase product info was updated, we should update it here, but not warehouse info
             //we don't need to check if product exists if Inventory id exists, so we just save it
             Product updatedProduct = id.getProduct();

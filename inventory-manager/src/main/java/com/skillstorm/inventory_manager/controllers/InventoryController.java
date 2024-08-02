@@ -64,7 +64,7 @@ public class InventoryController {
 
     @PostMapping("/add")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Inventory create(@Valid @RequestBody Inventory item) {
+    public Inventory create(@RequestBody Inventory item) {
         //creates a new entity
         return service.create(item);
     }
