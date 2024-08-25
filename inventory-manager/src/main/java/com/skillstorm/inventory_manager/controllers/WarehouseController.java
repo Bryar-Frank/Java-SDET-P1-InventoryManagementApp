@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173/")
+@CrossOrigin
 @RequestMapping("/warehouse")
 public class WarehouseController {
     @Autowired

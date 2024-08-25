@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173/")
+@CrossOrigin
 @RequestMapping("/inventory")
 public class InventoryController {
     @Autowired
