@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState } from 'react';
 import { Button, Alert, Breadcrumb, Form, Container } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom';
+import { baseURL } from '../../App';
 
 export default function EditWarehouseForm () {
     
@@ -11,7 +12,7 @@ export default function EditWarehouseForm () {
     //checking to make sure state was transferred correctly through useLocation()
     //console.log(warehouse);
 
-    const url = "http://localhost:8080/warehouse/update";
+    const url = baseURL + "/warehouse/update";
 
     //parameter is json repesentation of an warehouse that needs to be updated
     let sendPUT = function(data) {

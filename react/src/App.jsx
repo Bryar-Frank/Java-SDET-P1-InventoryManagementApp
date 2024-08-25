@@ -9,6 +9,7 @@ import { Container } from 'react-bootstrap'
 
 
 
+export const baseURL = "http://simplesort.us-east-1.elasticbeanstalk.com"
 
 function App() {
 

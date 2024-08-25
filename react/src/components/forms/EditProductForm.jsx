@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button, Alert, Breadcrumb, Form } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom';
+import { baseURL } from '../../App';
 
 export default function EditProductForm () {
     
@@ -12,7 +13,7 @@ export default function EditProductForm () {
     //checking to make sure state was transferred correctly through useLocation()
     //console.log(item);
 
-    const url = "http://localhost:8080/inventory/update";
+    const url = baseURL + "/inventory/update";
 
     //parameter is json repesentation of an item that needs to be updated
     let sendPUT = function(data) {

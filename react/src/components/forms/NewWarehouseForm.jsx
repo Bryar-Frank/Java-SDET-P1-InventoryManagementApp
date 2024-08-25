@@ -1,9 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button, Alert, Breadcrumb, Form } from 'react-bootstrap'
+import { baseURL } from '../../App';
 
 export default function NewWarehouseForm () {
 
-    const url = "http://localhost:8080/warehouse/add";
+    const url = baseURL + "/warehouse/add";
 
     let sendPOST = function(data) {
         fetch(url, {

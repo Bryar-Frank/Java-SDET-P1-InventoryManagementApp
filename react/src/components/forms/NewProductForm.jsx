@@ -1,10 +1,11 @@
 import { Form, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import { baseURL } from "../../App";
 
 export default function NewProductForm () {
     
-    const urlAdd = "http://localhost:8080/inventory/add";
-    const urlWarehouses = "http://localhost:8080/warehouse";
+    const urlAdd = baseURL + "/inventory/add";
+    const urlWarehouses = baseURL + "/warehouse";
     const [warehouses, setWarehouses] = useState([]);
     const [chosenWarehouse, setChosenWarehouse] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
